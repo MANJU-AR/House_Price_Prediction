@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>House Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🏠 House Price Prediction</h1>
+
+        {% if prediction %}
+            <div class="result">
+                Predicted Price: <strong>₹{{ (prediction * 83000) | round(0) }}</strong>
+            </div>
+        {% elif error %}
+            <div class="error">Error: {{ error }}</div>
+        {% endif %}
+
+        <form method="post">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="crim">Crime Rate (per capita)</label>
+                    <input type="text" id="crim" name="crim" placeholder="e.g., 0.1" required value="{{ input_data.crim if input_data else '' }}">
+                </div>
+                <div class="form-group">
+                    <label for="zn">Land Zoned (%)</label>
+                    <input type="text" id="zn" name="zn" placeholder="e.g., 12.5" required value="{{ input_data.zn if input_data else '' }}">
+                </div>
+                <div class="form-group">
+                    <label for="indus">Non-retail Business Area (%)</label>
+                    <input type="text" id="indus" name="indus" placeholder="e.g., 7.5" required value="{{ input_data.indus if input_data else '' }}">
+                </div>
+                <div class="form-group">
+                    <label for="chas">Charles River (1 = yes, 0 = no)</label>
+                    <input type="text" id="chas" name="chas" placeholder="0 or 1" required value="{{ input_data.chas if input_data else '' }}">
+                </div>
+                <div class="form-group">
+                    <label for="nox">NOx Concentration (ppm)</label>
+                    <input type="text" id="nox" name="nox" placeholder="e.g., 0.5" required value="{{ input_data.nox if input_data else '' }}">
+                </div>
+                <div class="form-group">
+                    <label for="rm">Avg Rooms per Dwelling</label>
+                    <input type="text" id="rm" name="rm" placeholder="e.g., 6.5" required value="{{ input_data.rm if input_data else '' }}">
+                </div>
+                <div class="form-group">
+                    <label for="age">Old Buildings (%)</label>
+                    <input type="text" id="age" name="age" placeholder="e.g., 65" required value="{{ input_data.age if input_data else '' }}">
+                </div>
+                <div class="form-group">
+                    <label for="dis">Distance to Employment Centers</label>
+                    <input type="text" id="dis" name="dis" placeholder="e.g., 4.0" required value="{{ input_data.dis if input_data else '' }}">
+                </div>
+                <div class="form-group">
+                    <label for="rad">Highway Access Index</label>
+                    <input type="text" id="rad" name="rad" placeholder="e.g., 3" required value="{{ input_data.rad if input_data else '' }}">
+                </div>
+                <div class="form-group">
+                    <label for="tax">Property Tax Rate (/10k)</label>
+                    <input type="text" id="tax" name="tax" placeholder="e.g., 300" required value="{{ input_data.tax if input_data else '' }}">
+                </div>
+                <div class="form-group">
+                    <label for="ptratio">Pupil-Teacher Ratio</label>
+                    <input type="text" id="ptratio" name="ptratio" placeholder="e.g., 18" required value="{{ input_data.ptratio if input_data else '' }}">
+                </div>
+                <div class="form-group">
+                    <label for="b">B Index (Demographic)</label>
+                    <input type="text" id="b" name="b" placeholder="e.g., 390" required value="{{ input_data.b if input_data else '' }}">
+                </div>
+                <div class="form-group">
+                    <label for="lstat">Lower Status Population (%)</label>
+                    <input type="text" id="lstat" name="lstat" placeholder="e.g., 12" required value="{{ input_data.lstat if input_data else '' }}">
+                </div>
+            </div>
+
+            <div class="form-footer">
+                <button type="submit">Predict Price</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
