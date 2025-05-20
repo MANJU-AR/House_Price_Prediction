@@ -79,9 +79,6 @@ house-price-prediction/
 │   └── style.css         # CSS for styling
 ```
 
-## 📷 Demo Screenshot
-
-![Application Screenshot](path_to_your_screenshot.png)
 
 ## 🧪 Sample Input for Testing
 
